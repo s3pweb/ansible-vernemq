@@ -16,6 +16,12 @@
     reload: yes
   when: (sysctl_filemax.stdout | int) < sansible_vernemq_nofile
 
+- name: Purge old VerneMQ .deb Package
+  apt:
+    name: vernemq
+    state: absent
+    purge: yes
+
 - name: Install VerneMQ from sansible_vernemq_download_url
   block:
 
